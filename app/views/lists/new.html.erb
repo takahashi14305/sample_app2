@@ -1,15 +1,17 @@
 <h1>新規投稿</h1>
-<%= form_with model: @list do |f| %>
+
 <!-- 四行目は丁寧形　-->
 <%#= form_with model: @list, url: '/lists', method: :post do |f| %>
-
-  <% if @list.errors.any? %>
-    <%= @list.errors.count %> 件のエラーが発生しました
-    <% @list.errors.full_massage.each do |massage| %>
-      <%= massage %>
+<% if @list.errors.any? %>
+  <%= @list.errors.count %> 件のエラーが発生しました
+  <ul>
+    <% @list.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
     <%end%>
-  <%end%>
+  </ul>
+<%end%>
 
+<%= form_with model: @list do |f| %>
   <h3>タイトル</h3>
   <%= f.text_field :title %>
 
